@@ -2,12 +2,15 @@
 
 A modern, high-quality desktop application that allows you to generate, customize, and design beautiful QR codes completely offline. Built as a native desktop experience for Windows using Electron, and fully optimized to deploy as a responsive web app.
 
-Created by **David Josh Carnaje** • **v1.0.0** (Windows Desktop & Web Deploy Ready)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Live_Demo-blue?style=for-the-badge&logo=vercel&logoColor=white)](https://qr-myself.vercel.app/)
+
+### 🚀 [Live Demo / View Website](https://qr-myself.vercel.app/)
 
 ---
 
-## ✨ Key Features
+## ⚡ Key Features
 
+- 🔌 **Dual Deployment & Cross-Platform Optimization:** Runs as a standalone, zero-dependency offline Windows desktop application, or can be deployed instantly as a responsive web app accessible on mobile, tablet, and desktop web browsers.
 - 🔌 **Full Offline Capabilities:** Core generation engine, base64 file processing, and custom vector templates run entirely locally. No external APIs or active internet connections are required.
 - 🎨 **3-Column Premium UI:** Sleek visual panels inspired by professional design tools (Flowcode, Figma) featuring a dark blue/indigo sidebar and control drawers, contrasted against a clean, white input canvas.
 - 📱 **Smart Responsive Grid Layout:** Elements automatically re-order dynamically on smaller screens (viewports < `lg` breakpoint) to present a polished vertical mobile layout hierarchy:
@@ -90,3 +93,9 @@ This repository is ready for zero-configuration deployments to **Vercel** or oth
 
 ### Environment Adapting
 The code automatically detects its run-time environment (`isElectron` check). When hosted on Vercel and loaded inside mobile browsers or standard web viewports, it seamlessly bypasses Electron-specific IPC systems and falls back to a secure DOM link simulation (`document.createElement('a')`) to download customized QR codes straight to your device’s downloads folder.
+
+---
+
+## 👨‍💻 Author
+
+Developed by **David Josh Carnaje**
