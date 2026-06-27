@@ -11,15 +11,21 @@
     "electron:build": "npm run build && electron-builder --win"
   },
   "dependencies": {
+    "html-to-image": "^1.11.13",
+    "lucide-react": "^1.21.0",
+    "qr-code-styling": "^1.9.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
-    "electron": "^30.0.0",
-    "electron-builder": "^24.13.3",
-    "vite": "^5.2.0"
+    "electron": "^42.5.0",
+    "electron-builder": "^26.15.3",
+    "tailwindcss": "^4.3.1",
+    "vite": "^8.1.0"
   },
   "build": {
     "appId": "com.davidjosh.qrgenerator",
