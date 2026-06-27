@@ -31,12 +31,11 @@
     "appId": "com.davidjosh.qrgenerator",
     "productName": "Offline QR Generator",
     "directories": {
-      "output": "dist_electron"
+      "output": "dist_electron_build"
     },
     "files": [
       "dist/**/*",
-      "electron/**/*",
-      "node_modules/**/*"
+      "electron/**/*"
     ],
     "win": {
       "target": [
