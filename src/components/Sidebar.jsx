@@ -11,51 +11,37 @@ const Sidebar = ({ activeType, setActiveType }) => {
   ];
 
   return (
-    <div className="w-full lg:w-64 bg-white border-b lg:border-b-0 lg:border-r border-slate-100 flex flex-col shrink-0 select-none p-4 lg:p-6 overflow-hidden">
-      <div className="flex flex-row lg:flex-col items-center lg:items-stretch justify-between lg:justify-start gap-4 w-full">
-        
-        {/* LOGO - Hidden on mobile view, shown on desktop */}
-        <div className="hidden lg:flex items-center gap-3 mb-8 px-2">
-          <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-100">
-            QR
-          </div>
-          <span className="font-bold text-lg tracking-tight text-slate-800">OfflineQR</span>
+    <div className="w-full bg-transparent select-none pb-2 flex flex-col gap-3">
+      {/* Brand Header */}
+      <div className="flex items-center gap-2.5 px-1 pt-1">
+        <div className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-extrabold text-sm shadow-md shadow-indigo-900/20">
+          QR
         </div>
-
-        {/* Responsive Navigation: Horizontal icons-only on mobile, full vertical buttons on desktop */}
-        <nav className="flex flex-row lg:flex-col justify-around lg:justify-start w-full gap-2 lg:space-y-1.5">
-          {menuItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeType === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveType(item.id)}
-                className={`flex items-center justify-center lg:justify-start gap-2.5 p-3 lg:px-4 lg:py-3.5 rounded-xl text-xs lg:text-sm font-semibold transition-all duration-250 min-w-[44px] lg:min-w-0 lg:w-full ${
-                  isActive
-                    ? 'bg-indigo-50 text-indigo-600 shadow-sm shadow-indigo-50/50'
-                    : 'text-slate-500 hover:bg-slate-50 hover:text-slate-800'
-                }`}
-                title={item.label}
-              >
-                <Icon className={`w-5 h-5 transition-colors ${isActive ? 'text-indigo-600' : 'text-slate-400'}`} />
-                <span className="hidden lg:inline">{item.label}</span>
-              </button>
-            );
-          })}
-        </nav>
+        <span className="font-black text-sm tracking-tight text-slate-200">OfflineQR Designer</span>
       </div>
 
-      {/* Info Badge - Hidden on mobile, shown on desktop */}
-      <div className="hidden lg:block pt-4 border-t border-slate-100 mt-auto">
-        <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-100 select-none">
-          <span className="text-xs font-bold text-slate-800 block mb-0.5">OfflineQR</span>
-          <span className="text-[10px] text-slate-400 block font-mono mb-2.5">v1.0.0 (Windows Offline)</span>
-          <div className="text-[10px] text-slate-500 border-t border-slate-200/60 pt-2 font-medium">
-            Created by <span className="font-semibold text-indigo-600">David Josh Carnaje</span>
-          </div>
-        </div>
-      </div>
+      {/* Categories Horizontal Selector */}
+      <nav className="flex flex-row gap-1.5 w-full overflow-x-auto pb-2 custom-scrollbar pr-1 whitespace-nowrap">
+        {menuItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeType === item.id;
+          return (
+            <button
+              key={item.id}
+              onClick={() => setActiveType(item.id)}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 shrink-0 ${
+                isActive
+                  ? 'bg-indigo-950/60 text-indigo-400 border border-indigo-500/20 shadow-sm'
+                  : 'text-slate-400 hover:bg-white/5 hover:text-slate-200 border border-transparent'
+              }`}
+              title={item.label}
+            >
+              <Icon className="w-3.5 h-3.5 shrink-0" />
+              <span>{item.label}</span>
+            </button>
+          );
+        })}
+      </nav>
     </div>
   );
 };

@@ -29,7 +29,8 @@
     },
     "files": [
       "dist/**/*",
-      "electron/**/*"
+      "electron/**/*",
+      "node_modules/**/*"
     ],
     "win": {
       "target": [

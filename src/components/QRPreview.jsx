@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef, useMemo, useState } from 'react';
 import QRCodeStyling from 'qr-code-styling';
+import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 
 const QRPreview = ({
   activeType,
@@ -16,6 +17,7 @@ const QRPreview = ({
   frameRef
 }) => {
   const containerRef = useRef(null);
+  const [zoom, setZoom] = useState(1);
 
   // Compile active QR data string based on selected data type safely
   const qrData = useMemo(() => {
@@ -286,11 +288,47 @@ const QRPreview = ({
   };
 
   return (
-    <div className="flex items-center justify-center py-4 bg-slate-900/5 dark:bg-black/20 rounded-2xl p-6 min-h-[360px]">
-      {renderFramedQR()}
+    <div className="relative w-full h-full flex flex-col items-center justify-center min-h-[380px] select-none">
+      
+      {/* Interactive Glassmorphic Workspace Zoom Controls */}
+      <div className="absolute top-0 right-0 flex items-center gap-1 bg-white/10 border border-white/20 backdrop-blur-md px-2.5 py-1.5 rounded-full shadow-lg z-20 text-slate-300">
+        <button 
+          onClick={() => setZoom(prev => Math.max(0.5, prev - 0.1))}
+          className="p-1 hover:bg-white/10 rounded-full transition-colors active:scale-90"
+          title="Zoom Out"
+        >
+          <ZoomOut className="w-3.5 h-3.5 text-slate-300" />
+        </button>
+        <span className="text-[10px] font-black w-8 text-center select-none font-mono text-slate-350">
+          {Math.round(zoom * 100)}%
+        </span>
+        <button 
+          onClick={() => setZoom(prev => Math.min(2.0, prev + 0.1))}
+          className="p-1 hover:bg-white/10 rounded-full transition-colors active:scale-90"
+          title="Zoom In"
+        >
+          <ZoomIn className="w-3.5 h-3.5 text-slate-300" />
+        </button>
+        <button 
+          onClick={() => setZoom(1.0)}
+          className="p-1 hover:bg-white/10 rounded-full transition-colors active:scale-90 border-l border-white/10 pl-1.5 ml-0.5"
+          title="Reset Zoom"
+        >
+          <Maximize2 className="w-3.5 h-3.5 text-slate-300" />
+        </button>
+      </div>
+
+      {/* Scaled QR Card Workspace Container (Visually scaled, but frameRef remains 100% for captures) */}
+      <div 
+        className="transition-transform duration-200 ease-out flex items-center justify-center p-6"
+        style={{ transform: `scale(${zoom})` }}
+      >
+        {renderFramedQR()}
+      </div>
+
     </div>
   );
 };
 
 export default QRPreview;
-export { QRCodeStyling }; // export to let other files reference if needed
+export { QRCodeStyling };
